@@ -4,9 +4,9 @@
 BTreeNode::BTreeNode(){
 }
 
-BTreeNode::BTreeNode(bool leaf) {
-	this->keys = nullptr;
-	this->children = nullptr;
+BTreeNode::BTreeNode(int T,bool leaf) {
+	this->keys = new int[2 * T - 1];
+	this->children = new BTreeNode * [2 * T];
 	this->numberOfKeys = 0;
 	this->leaf = leaf;
 }

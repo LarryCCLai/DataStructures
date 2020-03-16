@@ -11,9 +11,8 @@ private:
 public:
 
 	BTreeNode();
-	BTreeNode(bool _leaf);
+	BTreeNode(int T, bool _leaf);
 	~BTreeNode();
-
 
 	int GetKey(int idx);
 	BTreeNode* GetChild(int idx);
@@ -24,7 +23,7 @@ public:
 	void SetChild(int idx, BTreeNode* child);
 	void SetNumberOfKeys(int num);
 	void SetLeaf(bool leaf);
-
+	
 };
 
 #endif // !BTREENODE_H
