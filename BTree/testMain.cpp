@@ -6,6 +6,13 @@
 using namespace std;
 
 int main() {
+	/*BTree* tree = new BTree(3);
+	for (size_t i = 0; i < 1000; i++)
+	{
+		tree->Insert(i);
+		cout << "Insert:" << i << endl;
+	}*/
+
 	BTree* tree = new BTree(100);
 	minstd_rand generator;
 	uniform_int_distribution<int> r(0, 100000);

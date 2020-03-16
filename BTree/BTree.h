@@ -5,8 +5,7 @@ class BTree{
 private:
 	BTreeNode* root;
 	int T;			// Minimum degree
-	void InsertNonFull(BTreeNode* cur, int key);
-	void SplitChild(BTreeNode* x, int i);
+	
 
 public:
 	BTree(int T);

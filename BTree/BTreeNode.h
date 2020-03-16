@@ -23,6 +23,9 @@ public:
 	void SetChild(int idx, BTreeNode* child);
 	void SetNumberOfKeys(int num);
 	void SetLeaf(bool leaf);
+
+	void InsertNonFull(int T, int key);
+	void SplitChild(int T, int i);
 	
 };
 
