@@ -1,15 +1,25 @@
 #ifndef BTREENODE_H
 #define BTREENODE_H
-
-
+#include<fstream>
+#include<iostream>
+using namespace std;
 class BTreeNode {
 private:
 	int* keys;
 	BTreeNode** children;
 	int numberOfKeys;
 	bool leaf;
-public:
 
+	void DeleteFromLeaf(int T, int idx);
+	void DeleteFromNonLeaf(int T, int idx);
+	int GetPred(int idx);
+	int GetSucc(int idx);
+	void Fill(int T, int idx);
+	void BorrowFromPrev(int T, int idx);
+	void BorrowFromNext(int T, int idx);
+	void Merge(int T, int idx);
+
+public:
 	BTreeNode();
 	BTreeNode(int T, bool _leaf);
 	~BTreeNode();
@@ -25,8 +35,10 @@ public:
 	void SetLeaf(bool leaf);
 
 	void InsertNonFull(int T, int key);
-	void SplitChild(int T, int i);
-	
-};
+	void SplitChild(int T, int idx);
 
+	void Delete(int T, int key);
+	int Search(int key);
+	void Inorder(fstream* file);
+};
 #endif // !BTREENODE_H
