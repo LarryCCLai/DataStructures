@@ -277,12 +277,28 @@ void BTreeNode::Merge(int T, int idx) {
 	delete(sibling);
 }
 
-void BTreeNode::Inorder(fstream* file) {
+int BTreeNode::Search(int key) {
+	int idx = 0;
+	while (idx < this->numberOfKeys && key > this->keys[idx]) {
+		idx++;
+	}
+	if (idx < this->numberOfKeys && keys[idx] == key) {
+		return key;
+	}
+	else if (this->leaf) {
+		return -1;
+	}
+	else {
+		return this->children[idx]->Search(key);
+	}
+}
+
+void BTreeNode::Inorder(std::fstream& file) {
 	for (int i = 0; i < this->GetNumberOfKeys(); i++) {
 		if (leaf == false) {
 			this->GetChild(i)->Inorder(file);
 		}
-		*file << keys[i] << " ";
+		file << keys[i] << " ";
 	}
 	if (leaf == false) {
 		this->GetChild(this->GetNumberOfKeys())->Inorder(file);

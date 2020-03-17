@@ -1,8 +1,5 @@
-#include<fstream>
-#include<iostream>
-using namespace std;
 #include"BTree.h"
-fstream*  file;
+
 BTree::BTree(int T) {
 	this->root = nullptr;
 	this->T = T;
@@ -46,14 +43,12 @@ void BTree::Delete(int key) {
 	}
 }
 
-void BTree::Inorder() {
+int BTree::Search(int key) {
+	return (this->root != nullptr) ? this->root->Search(key) : -1;
+}
+
+void BTree::Inorder(std::fstream& file) {
 	if (this->root != nullptr) {
-		file = new fstream;
-		file->open("res1.txt", ios::out);
-		if (!file) {
-			cout << "error";
-			system("pause");
-		}
 		this->root->Inorder(file);
 	}
 }

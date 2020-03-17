@@ -1,8 +1,6 @@
 #ifndef BTREENODE_H
 #define BTREENODE_H
 #include<fstream>
-#include<iostream>
-using namespace std;
 class BTreeNode {
 private:
 	int* keys;
@@ -39,6 +37,6 @@ public:
 
 	void Delete(int T, int key);
 	int Search(int key);
-	void Inorder(fstream* file);
+	void Inorder(std::fstream& file);
 };
 #endif // !BTREENODE_H

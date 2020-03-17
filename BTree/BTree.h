@@ -11,7 +11,7 @@ public:
 	void Insert(int key);
 	int Search(int key);
 	void Delete(int key);
-	void Inorder();
+	void Inorder(std::fstream&);
 
 };
 #endif // !BTREE_H
