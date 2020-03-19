@@ -2,7 +2,7 @@
 #define SINGLYLINEDLIST_NODE_H
 class SinglyLinkedListNode {
 private:
-	int key;
+	int data;
 	SinglyLinkedListNode* next;
 public:
 	SinglyLinkedListNode();
@@ -10,9 +10,9 @@ public:
 
 	~SinglyLinkedListNode();
 
-	int GetKey();
+	int GetData();
 	SinglyLinkedListNode* GetNext();
-	void SetKey(int key);
+	void SetData(int key);
 	void SetNext(SinglyLinkedListNode* next);
 
 };

@@ -8,9 +8,12 @@ private:
 public:
 	SinglyLinkedList ();
 	~SinglyLinkedList ();
-	void Insert(int idx, int key);
+	void Insert(int idx, int data);
 	void Delete(int idx);
-	int Search(int key);
+	void PushFront(int data);
+	void PushBack(int data);
+	int Search(int data);
+	void Reverse();
 };
 
 #endif // !SINGLYLINEDLIST_H

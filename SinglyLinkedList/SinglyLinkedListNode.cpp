@@ -1,26 +1,26 @@
 #include"SinglyLinkedListNode.h"
 #include<iostream>
 SinglyLinkedListNode::SinglyLinkedListNode() {
-	this->key = NULL;
+	this->data = NULL;
 	this->next = nullptr;
 }
 SinglyLinkedListNode::SinglyLinkedListNode(int key) {
-	this->key = key;
+	this->data = key;
 	this->next = nullptr;
 }
 SinglyLinkedListNode::~SinglyLinkedListNode() {
 
 }
 
-int SinglyLinkedListNode::GetKey() {
-	return this->key;
+int SinglyLinkedListNode::GetData() {
+	return this->data;
 }
 
 SinglyLinkedListNode* SinglyLinkedListNode::GetNext() {
 	return this->next;
 }
-void SinglyLinkedListNode::SetKey(int key) {
-	this->key = key;
+void SinglyLinkedListNode::SetData(int key) {
+	this->data = key;
 }
 
 void SinglyLinkedListNode::SetNext(SinglyLinkedListNode* next) {
