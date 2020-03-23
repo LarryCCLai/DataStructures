@@ -1,14 +1,19 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
+#include"SinglyLinkedList.h"
+enum HashMethod {
+	Division,
+	Multiplication
+};
+
 class HashTable {
 private:
-	int* keys;
-	int m;
+	SinglyLinkedList* keyLists;
+	int M;
 public:
 	HashTable(int space);
 	~HashTable();
-	int Hash(int key, int i);
-	int OpenAddressing();
+	int Hash(int key);
 	void Insert(int key);
 	void Delete(int key);
 	int Search(int key);
