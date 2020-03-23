@@ -14,6 +14,7 @@ public:
 	void PushBack(int data);
 	int Search(int data);
 	void Reverse();
+	void Travel();
 };
 
 #endif // !SINGLYLINEDLIST_H

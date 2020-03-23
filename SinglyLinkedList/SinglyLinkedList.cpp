@@ -10,18 +10,19 @@ SinglyLinkedList::~SinglyLinkedList() {
 }
 
 void SinglyLinkedList::Insert(int idx, int data) {
-	if (idx > this->size) {
-		std::cout << "[error] Insert: idx>length of the lineked list" << std::endl;
-		return;
+	if (idx == 0) {
+		this->PushFront(data);
 	}
-	SinglyLinkedListNode* newNode = new SinglyLinkedListNode(data);
-	SinglyLinkedListNode* cur = this->head;
-	idx--;
-	while (idx > 0) {
-		cur = cur->GetNext();
+	else {
+		SinglyLinkedListNode* newNode = new SinglyLinkedListNode(data);
+		SinglyLinkedListNode* cur = this->head;
+		idx--;
+		while (idx-- > 0) {
+			cur = cur->GetNext();
+		}
+		newNode->SetNext(cur->GetNext());
+		cur->SetNext(newNode);
 	}
-	newNode->SetNext(cur->GetNext());
-	cur->SetNext(newNode);
 	this->size++;
 }
 
@@ -34,7 +35,7 @@ void SinglyLinkedList::Delete(int idx) {
 	else {
 		SinglyLinkedListNode* cur = this->head;
 		idx--;
-		while (idx > 0) {
+		while (idx-- > 0) {
 			cur = cur->GetNext();
 		}
 		deletedNode = cur->GetNext();
@@ -50,11 +51,16 @@ void SinglyLinkedList::PushFront(int data) {
 }
 
 void SinglyLinkedList::PushBack(int data) {
-	SinglyLinkedListNode* cur = head;
-	while (cur->GetNext() != nullptr) {
-		cur = cur->GetNext();
+	if (!this->head) {
+		this->head = new SinglyLinkedListNode(data);
 	}
-	cur->SetNext(new SinglyLinkedListNode(data));
+	else {
+		SinglyLinkedListNode* cur = head;
+		while (cur->GetNext() != nullptr) {
+			cur = cur->GetNext();
+		}
+		cur->SetNext(new SinglyLinkedListNode(data));
+	}
 }
 
 int SinglyLinkedList::Search(int data) {
@@ -63,9 +69,11 @@ int SinglyLinkedList::Search(int data) {
 		if (cur->GetData() == data) {
 			return data;
 		}
+		cur = cur->GetNext();
 	}
 	return NULL;
 }
+
 void SinglyLinkedList::Reverse() {
 	SinglyLinkedListNode* prev = nullptr;
 	SinglyLinkedListNode* cur = this->head;
@@ -78,4 +86,12 @@ void SinglyLinkedList::Reverse() {
 	}
 	cur->SetNext(prev);
 	this->head = cur;
+}
+
+void SinglyLinkedList::Travel() {
+	SinglyLinkedListNode* cur = this->head;
+	while (cur != nullptr) {
+		std::cout << cur->GetData();
+		cur = cur->GetNext();
+	}
 }
