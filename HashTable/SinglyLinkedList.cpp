@@ -50,11 +50,16 @@ void SinglyLinkedList::PushFront(int data) {
 }
 
 void SinglyLinkedList::PushBack(int data) {
-	SinglyLinkedListNode* cur = head;
-	while (cur->GetNext() != nullptr) {
-		cur = cur->GetNext();
+	SinglyLinkedListNode* cur = this->head;
+	if (this->head == nullptr) {
+		this->head = new SinglyLinkedListNode(data);
 	}
-	cur->SetNext(new SinglyLinkedListNode(data));
+	else {
+		while (cur->GetNext() != nullptr) {
+			cur = cur->GetNext();
+		}
+		cur->SetNext(new SinglyLinkedListNode(data));
+	}
 }
 
 int SinglyLinkedList::Search(int data) {
@@ -63,6 +68,7 @@ int SinglyLinkedList::Search(int data) {
 		if (cur->GetData() == data) {
 			return data;
 		}
+		cur = cur->GetNext();
 	}
 	return NULL;
 }
