@@ -22,7 +22,7 @@ void DoublyLinkedList::Insert(int idx, int data) {
 	DoublyLinkedListNode* newNode = new DoublyLinkedListNode(data);
 	DoublyLinkedListNode* cur = this->head;
 	idx--;
-	while (idx > 0) {
+	while (idx-- > 0) {
 		cur = cur->GetNext();
 	}
 	newNode->SetNext(cur->GetNext());
@@ -42,12 +42,17 @@ void DoublyLinkedList::Delete(int idx) {
 	else {
 		DoublyLinkedListNode* cur = this->head;
 		idx--;
-		while (idx > 0) {
+		while (idx-- > 0) {
 			cur = cur->GetNext();
 		}
 		deletedNode = cur->GetNext();
 		cur->SetNext(deletedNode->GetNext());
-		deletedNode->GetNext()->SetPrev(cur);
+		if (deletedNode->GetNext() != nullptr) {
+			deletedNode->GetNext()->SetPrev(cur);
+		}
+		else {
+			this->tail = cur;
+		}
 	}
 	delete deletedNode;
 }
@@ -55,14 +60,24 @@ void DoublyLinkedList::Delete(int idx) {
 void DoublyLinkedList::PushFront(int data) {
 	DoublyLinkedListNode* newNode = new DoublyLinkedListNode(data);
 	newNode->SetNext(this->head);
-	this->head->SetPrev(newNode);
+	if (this->head == nullptr) {
+		this->tail = newNode;
+	}
+	else{
+		this->head->SetPrev(newNode);
+	}
 	this->head = newNode;
 }
 
 void DoublyLinkedList::PushBack(int data) {
 	DoublyLinkedListNode* newNode = new DoublyLinkedListNode(data);
 	newNode->SetPrev(this->tail);
-	this->tail->SetNext(newNode);
+	if (this->tail == nullptr) {
+		this->head = newNode;
+	}
+	else {
+		this->tail->SetNext(newNode);
+	}
 	this->tail = newNode;
 }
 
@@ -72,20 +87,22 @@ int DoublyLinkedList::Search(int data) {
 		if (cur->GetData() == data) {
 			return data;
 		}
+		cur = cur->GetNext();
 	}
 	return NULL;
 }
 
-void DoublyLinkedList::Reverse() {
-	DoublyLinkedListNode* prev = nullptr;
+void DoublyLinkedList::TravelFromHead() {
 	DoublyLinkedListNode* cur = this->head;
-	DoublyLinkedListNode* precede = cur->GetNext();
-	while (precede != nullptr) {
-		cur->SetNext(prev);
-		prev = cur;
-		cur = precede;
-		precede = precede->GetNext();
+	while (cur != nullptr) {
+		std::cout << cur->GetData();
+		cur = cur->GetNext();
 	}
-	cur->SetNext(prev);
-	this->head = cur;
+}
+void DoublyLinkedList::TravelFromTail() {
+	DoublyLinkedListNode* cur = this->tail;
+	while (cur != nullptr) {
+		std::cout << cur->GetData();
+		cur = cur->GetPrev();
+	}
 }

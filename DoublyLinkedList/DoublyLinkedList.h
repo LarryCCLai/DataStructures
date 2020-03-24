@@ -14,7 +14,8 @@ public:
 	void PushFront(int data);
 	void PushBack(int data);
 	int Search(int data);
-	void Reverse();
+	void TravelFromHead();
+	void TravelFromTail();
 };
 
 #endif // !DoublyLinkedList_H
