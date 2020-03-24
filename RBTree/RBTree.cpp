@@ -178,3 +178,74 @@ void RBTree::DeleteFix(RBTreeNode* fixed) {
 	fixed->SetColor('B');
 }
 
+RBTreeNode* RBTree::Search(int key) {
+	RBTreeNode* cur = this->root;
+	while (cur->GetKey() != key && cur != this->nil) {
+		cur = (key < cur->GetKey()) ? cur->GetLeft() : cur->GetRight();
+	}
+	return cur;
+}
+
+void RBTree::Transplant(RBTreeNode* beReplaced, RBTreeNode* replace) {
+	if (beReplaced->GetParent() == this->nil) {
+		this->root = replace;
+	}
+	else if (beReplaced == beReplaced->GetParent()->GetLeft()) {
+		beReplaced->GetParent()->SetLeft(replace);
+	}
+	else {
+		beReplaced->GetParent()->SetRight(replace);
+	}
+	replace->SetParent(beReplaced->GetParent());
+}
+
+void RBTree::LeftRotate(RBTreeNode* cur) {
+	RBTreeNode* curRight = cur->GetRight();
+	cur->SetRight(curRight->GetLeft());
+	if (curRight->GetLeft() != this->nil) {
+		curRight->GetLeft()->SetParent(cur);
+	}
+	curRight->SetParent(cur->GetParent());
+	if (cur->GetParent() != this->nil) {
+		this->root = curRight;
+	}
+	else if(cur==cur->GetParent()->GetLeft()) {
+		cur->GetParent()->SetLeft(curRight);
+	}
+	else {
+		cur->GetParent()->SetRight(curRight);
+	}
+	curRight->SetLeft(cur);
+	cur->SetParent(curRight);
+
+}
+
+void  RBTree::RightRotate(RBTreeNode* cur) {
+	RBTreeNode* curLeft = cur->GetLeft();
+	cur->SetLeft(curLeft->GetRight());
+
+	if (curLeft->GetRight() != this->nil) {
+		curLeft->GetRight()->SetParent(cur);
+	}
+
+	curLeft->SetParent(cur->GetParent());
+	if (cur->GetParent() != this->nil) {
+		this->root = curLeft;
+	}
+	else if (cur == cur->GetParent()->GetLeft()) {
+		cur->GetParent()->SetLeft(curLeft);
+	}
+	else {
+		cur->GetParent()->SetRight(curLeft);
+	}
+	curLeft->SetRight(cur);
+	cur->SetParent(curLeft);
+}
+
+RBTreeNode* TreeMinmum(RBTreeNode*);
+RBTreeNode* TreeMaxmum(RBTreeNode*);
+RBTreeNode* Successor(RBTreeNode*);
+RBTreeNode* Predecessor(RBTreeNode*);
+
+void Inorder();
+void _Inorder(RBTreeNode* cur);
