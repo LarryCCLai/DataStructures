@@ -4,26 +4,22 @@
 class RBTree {
 	RBTreeNode* root;
 	RBTreeNode* nil;
-public:
-	RBTree();
-	~RBTree();
 
-	void Insert(int key);
 	void InsertFix(RBTreeNode*);
-	void Delete(int key);
 	void DeleteFix(RBTreeNode*);
-	RBTreeNode* Search(int key);
-
 	void Transplant(RBTreeNode*, RBTreeNode*);
 	void LeftRotate(RBTreeNode*);
 	void RightRotate(RBTreeNode*);
-
 	RBTreeNode* TreeMinmum(RBTreeNode*);
 	RBTreeNode* TreeMaxmum(RBTreeNode*);
-	RBTreeNode* Successor(RBTreeNode*);
-	RBTreeNode* Predecessor(RBTreeNode*);
-
-	void Inorder();
 	void _Inorder(RBTreeNode* cur);
+
+public:
+	RBTree();
+	~RBTree();
+	void Insert(int key);
+	void Delete(int key);
+	RBTreeNode* Search(int key);
+	void Inorder();
 };
 #endif //  RBTREE_H

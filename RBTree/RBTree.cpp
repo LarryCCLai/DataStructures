@@ -1,9 +1,10 @@
 #include"RBTree.h"
-
+#include<iostream>
 RBTree::RBTree() {
-	this->root = nullptr;
 	this->nil = new RBTreeNode();
 	this->nil->SetColor('B');
+	this->root = this->nil;
+
 }
 
 RBTree::~RBTree() {
@@ -242,10 +243,29 @@ void  RBTree::RightRotate(RBTreeNode* cur) {
 	cur->SetParent(curLeft);
 }
 
-RBTreeNode* TreeMinmum(RBTreeNode*);
-RBTreeNode* TreeMaxmum(RBTreeNode*);
-RBTreeNode* Successor(RBTreeNode*);
-RBTreeNode* Predecessor(RBTreeNode*);
+RBTreeNode* RBTree::TreeMinmum(RBTreeNode* cur) {
+	while (cur->GetLeft() != this->nil) {
+		cur = cur->GetLeft();
+	}
+	return cur;
+}
 
-void Inorder();
-void _Inorder(RBTreeNode* cur);
+RBTreeNode* RBTree::TreeMaxmum(RBTreeNode* cur) {
+	while (cur->GetRight() != this->nil) {
+		cur = cur->GetRight();
+	}
+	return cur;
+}
+
+void RBTree::Inorder() {
+	this->_Inorder(this->root);
+}
+void RBTree::_Inorder(RBTreeNode* cur) {
+	if (cur->GetLeft() != this->nil) {
+		this->_Inorder(cur->GetLeft());
+	}
+	std::cout << cur->GetKey() << " ";
+	if (cur->GetRight() != this->nil) {
+		this->_Inorder(cur->GetRight());
+	}
+}
